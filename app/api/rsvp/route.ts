@@ -1,15 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
 import { google } from "googleapis"
 
-async function getAuthClient() {
-  const auth = new google.auth.GoogleAuth({
-    credentials: {
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    },
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+function getOAuthClient() {
+  const oauth2Client = new google.auth.OAuth2(
+    process.env.GOOGLE_OAUTH_CLIENT_ID,
+    process.env.GOOGLE_OAUTH_CLIENT_SECRET
+  )
+
+  oauth2Client.setCredentials({
+    refresh_token: process.env.GOOGLE_OAUTH_REFRESH_TOKEN,
   })
-  return auth
+
+  return oauth2Client
 }
 
 export async function POST(request: NextRequest) {
@@ -23,7 +25,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const auth = await getAuthClient()
+    const auth = getOAuthClient()
     const sheets = google.sheets({ version: "v4", auth })
 
     const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID
