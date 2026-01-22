@@ -62,8 +62,8 @@ export function HeroSection() {
 
       <RsvpModal open={rsvpOpen} onOpenChange={setRsvpOpen} />
 
-      {/* Scroll Indicator - positioned outside content div */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in-delay-2">
+      {/* Scroll Indicator - positioned with safe area for mobile */}
+      <div className="absolute bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in-delay-2 pb-safe">
         <ScrollIndicator targetId="photos" label="Discover our story" className="text-cream" />
       </div>
     </section>
