@@ -3,6 +3,7 @@
 import { MapPin, Copy, Check, Gift } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { toast } from "sonner"
 import { ScrollIndicator } from "./scroll-indicator"
 
 export function InfoSection() {
@@ -12,6 +13,8 @@ export function InfoSection() {
 
   const copyToClipboard = (text: string, type: "bank" | "btc" | "eth") => {
     navigator.clipboard.writeText(text)
+    const labels = { bank: "CBU", btc: "BTC address", eth: "ETH address" }
+    toast.success(`${labels[type]} copied to clipboard!`)
     if (type === "bank") {
       setCopiedBank(true)
       setTimeout(() => setCopiedBank(false), 2000)

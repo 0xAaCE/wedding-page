@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollIndicator } from "./scroll-indicator"
@@ -35,6 +35,8 @@ const photos = [
 
 export function PhotoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [touchStart, setTouchStart] = useState(0)
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % photos.length)
@@ -44,10 +46,47 @@ export function PhotoCarousel() {
     setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length)
   }, [])
 
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 5000)
-    return () => clearInterval(timer)
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(nextSlide, 5000)
   }, [nextSlide])
+
+  useEffect(() => {
+    timerRef.current = setInterval(nextSlide, 5000)
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+    }
+  }, [nextSlide])
+
+  const handlePrev = useCallback(() => {
+    prevSlide()
+    resetTimer()
+  }, [prevSlide, resetTimer])
+
+  const handleNext = useCallback(() => {
+    nextSlide()
+    resetTimer()
+  }, [nextSlide, resetTimer])
+
+  const handleDotClick = useCallback((index: number) => {
+    setCurrentIndex(index)
+    resetTimer()
+  }, [resetTimer])
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStart - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        handleNext()
+      } else {
+        handlePrev()
+      }
+    }
+  }
 
   return (
     <section id="photos" className="relative min-h-[100dvh] flex flex-col bg-card py-8">
@@ -61,7 +100,11 @@ export function PhotoCarousel() {
       <div className="flex-1 flex items-center justify-center px-4 pb-16">
         <div className="relative w-full max-w-5xl aspect-[5/4] md:aspect-video">
           {/* Main carousel container */}
-          <div className="relative w-full h-full overflow-hidden rounded-lg shadow-xl bg-muted">
+          <div
+            className="relative w-full h-full overflow-hidden rounded-lg shadow-xl bg-muted"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {photos.map((photo, index) => (
               <div
                 key={photo.id}
@@ -83,7 +126,7 @@ export function PhotoCarousel() {
             variant="outline"
             size="icon"
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
-            onClick={prevSlide}
+            onClick={handlePrev}
             aria-label="Previous photo"
           >
             <ChevronLeft className="h-5 w-5 text-foreground" />
@@ -92,25 +135,29 @@ export function PhotoCarousel() {
             variant="outline"
             size="icon"
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
-            onClick={nextSlide}
+            onClick={handleNext}
             aria-label="Next photo"
           >
             <ChevronRight className="h-5 w-5 text-foreground" />
           </Button>
 
           {/* Dots indicator */}
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-1 mt-4">
             {photos.map((photo, index) => (
               <button
                 key={photo.id}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? "bg-primary w-6" 
-                    : "bg-border hover:bg-muted-foreground"
-                }`}
+                onClick={() => handleDotClick(index)}
+                className="w-8 h-8 flex items-center justify-center"
                 aria-label={`Go to photo ${index + 1}`}
-              />
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-primary w-6"
+                      : "bg-border hover:bg-muted-foreground w-2"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

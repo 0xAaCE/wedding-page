@@ -68,7 +68,7 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="h-[100dvh] sm:h-auto sm:max-w-md rounded-none sm:rounded-lg">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl">Confirm Your Attendance</DialogTitle>
           <DialogDescription className="font-sans">
