@@ -1,17 +1,15 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Lato } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _cormorant = Cormorant_Garamond({ 
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"]
-});
-const _lato = Lato({ 
-  subsets: ["latin"],
-  weight: ["300", "400", "700"]
-});
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
+  variable: '--font-montserrat',
+})
 
 export const metadata: Metadata = {
   title: 'Ale & Clari - Wedding',
@@ -42,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
+    <html lang="en" className={montserrat.variable}>
+      <body className="font-body antialiased">
         {children}
         <Analytics />
       </body>

@@ -16,7 +16,7 @@ function getOAuthClient() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, dietaryRestrictions } = await request.json()
+    const { name, dietaryRestrictions, needsTransport } = await request.json()
 
     if (!name || typeof name !== "string") {
       return NextResponse.json(
@@ -43,10 +43,10 @@ export async function POST(request: NextRequest) {
     
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: `${firstSheetName}!A:C`,
+      range: `${firstSheetName}!A:D`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[timestamp, name, dietaryRestrictions || "None"]],
+        values: [[timestamp, name, dietaryRestrictions || "None", needsTransport || "No"]],
       },
     })
 

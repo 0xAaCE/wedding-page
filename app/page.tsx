@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/hero-section"
-import { InteractionSection } from "@/components/interaction-section"
 import { PhotoCarousel } from "@/components/photo-carousel"
 import { ThankYouSection } from "@/components/thank-you-section"
 import { InfoSection } from "@/components/info-section"
@@ -8,7 +7,6 @@ export default function WeddingPage() {
   return (
     <main>
       <HeroSection />
-      <InteractionSection />
       <PhotoCarousel />
       <ThankYouSection />
       <InfoSection />

@@ -21,12 +21,12 @@ export function ScrollIndicator({ targetId, label, className }: ScrollIndicatorP
     <button
       onClick={scrollToSection}
       className={cn(
-        "absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer z-10",
+        "flex flex-col items-center gap-2 group cursor-pointer",
         className
       )}
       aria-label={`Scroll to ${label}`}
     >
-      <span className="font-sans text-sm tracking-widest uppercase opacity-80 group-hover:opacity-100 transition-opacity">
+      <span className="font-sans text-sm font-medium tracking-widest opacity-90 group-hover:opacity-100 transition-opacity">
         {label}
       </span>
       <ChevronDown className="w-6 h-6 animate-bounce" />

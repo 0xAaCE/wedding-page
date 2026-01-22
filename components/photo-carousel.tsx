@@ -116,8 +116,10 @@ export function PhotoCarousel() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <ScrollIndicator targetId="thanks" label="Thank You" className="text-foreground" />
+      {/* Scroll indicator - positioned like hero section */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <ScrollIndicator targetId="thanks" label="Thank You" className="text-foreground" />
+      </div>
     </section>
   )
 }

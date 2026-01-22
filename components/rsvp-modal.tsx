@@ -7,7 +7,13 @@ import { Loader2, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import {
   Dialog,
   DialogContent,
@@ -23,7 +29,8 @@ interface RsvpModalProps {
 
 export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
   const [name, setName] = useState("")
-  const [dietaryRestrictions, setDietaryRestrictions] = useState("")
+  const [dietaryRestrictions, setDietaryRestrictions] = useState("none")
+  const [needsTransport, setNeedsTransport] = useState("no")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState("")
@@ -37,7 +44,7 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
       const response = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, dietaryRestrictions }),
+        body: JSON.stringify({ name, dietaryRestrictions, needsTransport }),
       })
 
       if (!response.ok) {
@@ -49,7 +56,8 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
         onOpenChange(false)
         setIsSuccess(false)
         setName("")
-        setDietaryRestrictions("")
+        setDietaryRestrictions("none")
+        setNeedsTransport("no")
       }, 2000)
     } catch (err) {
       setError("Something went wrong. Please try again.")
@@ -91,17 +99,31 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="dietary" className="font-sans">
-                Dietary Restrictions <span className="text-muted-foreground">(optional)</span>
-              </Label>
-              <Textarea
-                id="dietary"
-                value={dietaryRestrictions}
-                onChange={(e) => setDietaryRestrictions(e.target.value)}
-                placeholder="Vegetarian, vegan, allergies, etc."
-                rows={3}
-                className="font-sans resize-none"
-              />
+              <Label htmlFor="dietary" className="font-sans">Dietary Restrictions</Label>
+              <Select value={dietaryRestrictions} onValueChange={setDietaryRestrictions}>
+                <SelectTrigger className="w-full font-sans">
+                  <SelectValue placeholder="Select dietary restriction" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">None</SelectItem>
+                  <SelectItem value="celiac">Celiac</SelectItem>
+                  <SelectItem value="vegetarian">Vegetarian</SelectItem>
+                  <SelectItem value="vegan">Vegan</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="transport" className="font-sans">Do you need transport?</Label>
+              <Select value={needsTransport} onValueChange={setNeedsTransport}>
+                <SelectTrigger className="w-full font-sans">
+                  <SelectValue placeholder="Select option" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="no">No</SelectItem>
+                  <SelectItem value="yes">Yes</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             {error && (
