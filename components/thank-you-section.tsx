@@ -4,7 +4,7 @@ import { ScrollIndicator } from "./scroll-indicator"
 
 export function ThankYouSection() {
   return (
-    <section id="thanks" className="relative h-screen flex flex-col items-center justify-center bg-secondary">
+    <section id="thanks" className="relative min-h-[100dvh] flex flex-col items-center justify-center bg-secondary">
       <div className="max-w-3xl mx-auto px-4 text-center">
         <div className="mb-8">
           <svg 
@@ -39,7 +39,7 @@ export function ThankYouSection() {
 
       {/* Scroll indicator - positioned like hero section */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <ScrollIndicator targetId="info" label="Details & Gifts" className="text-foreground" />
+        <ScrollIndicator targetId="info" label="Details" className="text-foreground" />
       </div>
     </section>
   )
