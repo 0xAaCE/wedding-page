@@ -149,7 +149,7 @@ export function InfoSection() {
 
       {/* Mobile: Venue Section */}
       <section className="relative min-h-[100dvh] flex flex-col items-center justify-center bg-card py-16 md:hidden">
-        <div className="max-w-6xl mx-auto px-4 w-full">
+        <div className="max-w-6xl mx-auto px-4 w-full pb-16">
           <VenueContent />
         </div>
 
