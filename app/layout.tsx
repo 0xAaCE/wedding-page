@@ -14,9 +14,12 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'Ale & Clari - Wedding',
   description: 'Join us for our special day - March 14, 2026',
+  metadataBase: new URL('https://ale-clari.vercel.app'),
   openGraph: {
     title: 'Ale & Clari - Wedding',
     description: 'Join us for our special day - March 14, 2026',
+    url: 'https://ale-clari.vercel.app',
+    siteName: 'Ale & Clari Wedding',
     images: [
       {
         url: '/images/wheat-field.jpg',
@@ -25,6 +28,7 @@ export const metadata: Metadata = {
         alt: 'Ale & Clari Wedding',
       },
     ],
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
