@@ -91,10 +91,10 @@ export function PhotoCarousel() {
   return (
     <section id="photos" className="relative min-h-[100svh] flex flex-col bg-card py-8">
       <h2 className="font-serif text-3xl md:text-5xl text-center text-foreground mb-2 px-4">
-        Our Journey
+        Nuestra Historia
       </h2>
       <p className="text-center text-muted-foreground font-sans mb-4 md:mb-6 max-w-xl mx-auto px-4 text-sm md:text-base">
-        A glimpse into our story together
+        Un vistazo a nuestra historia juntos
       </p>
 
       <div className="flex-1 flex items-center justify-center px-4 pb-16">
@@ -165,7 +165,7 @@ export function PhotoCarousel() {
 
       {/* Scroll indicator - positioned like hero section */}
       <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <ScrollIndicator targetId="thanks" label="Thank You" className="text-foreground" />
+        <ScrollIndicator targetId="thanks" label="Gracias" className="text-foreground" />
       </div>
     </section>
   )

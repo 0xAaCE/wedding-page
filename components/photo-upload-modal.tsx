@@ -84,9 +84,9 @@ export function PhotoUploadModal({ open, onOpenChange }: PhotoUploadModalProps) 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">Share Your Photos</DialogTitle>
+          <DialogTitle className="font-serif text-2xl">Comparte tus Fotos</DialogTitle>
           <DialogDescription className="font-sans">
-            Upload your favorite moments from our celebration
+            Sube tus momentos favoritos de nuestra celebración
           </DialogDescription>
         </DialogHeader>
 
@@ -95,8 +95,8 @@ export function PhotoUploadModal({ open, onOpenChange }: PhotoUploadModalProps) 
             <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center">
               <Check className="w-8 h-8 text-accent-foreground" />
             </div>
-            <p className="font-serif text-xl text-foreground">Photos Uploaded!</p>
-            <p className="text-muted-foreground text-center">Thank you for sharing these memories with us.</p>
+            <p className="font-serif text-xl text-foreground">¡Fotos Subidas!</p>
+            <p className="text-muted-foreground text-center">Gracias por compartir estos recuerdos con nosotros.</p>
           </div>
         ) : (
           <div className="space-y-6 pt-4">
@@ -115,14 +115,14 @@ export function PhotoUploadModal({ open, onOpenChange }: PhotoUploadModalProps) 
                 className="hidden"
               />
               <Upload className="w-10 h-10 mx-auto text-muted-foreground mb-4" />
-              <p className="font-sans text-foreground mb-1">Click or drag photos here</p>
-              <p className="text-sm text-muted-foreground">JPG, PNG, HEIC up to 10MB each</p>
+              <p className="font-sans text-foreground mb-1">Haz clic o arrastra fotos aquí</p>
+              <p className="text-sm text-muted-foreground">JPG, PNG, HEIC hasta 10MB cada una</p>
             </div>
 
             {files.length > 0 && (
               <div className="space-y-2">
                 <p className="font-sans text-sm text-muted-foreground">
-                  {files.length} photo{files.length !== 1 ? "s" : ""} selected
+                  {files.length} foto{files.length !== 1 ? "s" : ""} seleccionada{files.length !== 1 ? "s" : ""}
                 </p>
                 <div className="grid grid-cols-4 gap-2">
                   {files.map((file, index) => (
@@ -156,12 +156,12 @@ export function PhotoUploadModal({ open, onOpenChange }: PhotoUploadModalProps) 
               {isUploading ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Uploading...
+                  Subiendo...
                 </>
               ) : (
                 <>
                   <ImageIcon className="w-4 h-4 mr-2" />
-                  Upload {files.length > 0 ? `${files.length} Photo${files.length !== 1 ? "s" : ""}` : "Photos"}
+                  Subir {files.length > 0 ? `${files.length} Foto${files.length !== 1 ? "s" : ""}` : "Fotos"}
                 </>
               )}
             </Button>

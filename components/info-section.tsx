@@ -7,21 +7,11 @@ import { ScrollIndicator } from "./scroll-indicator"
 
 export function InfoSection() {
   const [copiedBank, setCopiedBank] = useState(false)
-  const [copiedBtc, setCopiedBtc] = useState(false)
-  const [copiedEth, setCopiedEth] = useState(false)
 
-  const copyToClipboard = (text: string, type: "bank" | "btc" | "eth") => {
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
-    if (type === "bank") {
-      setCopiedBank(true)
-      setTimeout(() => setCopiedBank(false), 2000)
-    } else if (type === "btc") {
-      setCopiedBtc(true)
-      setTimeout(() => setCopiedBtc(false), 2000)
-    } else {
-      setCopiedEth(true)
-      setTimeout(() => setCopiedEth(false), 2000)
-    }
+    setCopiedBank(true)
+    setTimeout(() => setCopiedBank(false), 2000)
   }
 
   // Venue content component
@@ -30,7 +20,7 @@ export function InfoSection() {
       <div className="flex items-center gap-3 mb-4">
         <MapPin className="w-6 h-6 text-primary" />
         <h3 className="font-serif text-3xl md:text-4xl text-foreground">
-          Venue
+          Lugar
         </h3>
       </div>
 
@@ -43,7 +33,7 @@ export function InfoSection() {
           Buenos Aires, Argentina
         </p>
         <p className="text-sm">
-          Saturday, March 14, 2026 at 5:00 PM
+          Sábado 14 de marzo de 2026 a las 17:00 hs
         </p>
       </div>
 
@@ -69,21 +59,20 @@ export function InfoSection() {
       <div className="flex items-center gap-3 mb-4">
         <Gift className="w-6 h-6 text-primary" />
         <h3 className="font-serif text-3xl md:text-4xl text-foreground">
-          Gifts
+          Regalos
         </h3>
       </div>
 
       <p className="font-sans text-muted-foreground">
-        Your presence is our greatest gift. However, if you wish to honor us
-        with a present, we would appreciate a contribution to our honeymoon fund.
+        Tu presencia es nuestro mejor regalo. Sin embargo, si deseas hacernos un obsequio, agradeceríamos una contribución para nuestra luna de miel.
       </p>
 
       {/* Bank Info */}
       <div className="bg-secondary md:bg-card rounded-lg p-5 space-y-3">
-        <h4 className="font-serif text-lg text-foreground">Bank Transfer</h4>
+        <h4 className="font-serif text-lg text-foreground">Transferencia Bancaria</h4>
         <div className="font-sans text-sm text-muted-foreground space-y-1">
-          <p><strong className="text-foreground">Bank:</strong> Banco Galicia</p>
-          <p><strong className="text-foreground">Account Holder:</strong> Alejandro & Clarisa</p>
+          <p><strong className="text-foreground">Banco:</strong> Banco Galicia</p>
+          <p><strong className="text-foreground">Titular:</strong> Alejandro & Clarisa</p>
           <p><strong className="text-foreground">CBU:</strong> 0070999030004123456789</p>
           <p><strong className="text-foreground">Alias:</strong> ALE.CLARI.BODA</p>
         </div>
@@ -91,44 +80,11 @@ export function InfoSection() {
           variant="outline"
           size="sm"
           className="mt-2 gap-2 bg-transparent"
-          onClick={() => copyToClipboard("0070999030004123456789", "bank")}
+          onClick={() => copyToClipboard("0070999030004123456789")}
         >
           {copiedBank ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-          {copiedBank ? "Copied!" : "Copy CBU"}
+          {copiedBank ? "¡Copiado!" : "Copiar CBU"}
         </Button>
-      </div>
-
-      {/* Crypto Info */}
-      <div className="bg-secondary md:bg-card rounded-lg p-5 space-y-3">
-        <h4 className="font-serif text-lg text-foreground">Cryptocurrency</h4>
-        <div className="font-sans text-sm text-muted-foreground space-y-2">
-          <div>
-            <p><strong className="text-foreground">Bitcoin (BTC):</strong></p>
-            <p className="font-mono text-xs break-all">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="mt-2 gap-2 bg-transparent"
-              onClick={() => copyToClipboard("bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", "btc")}
-            >
-              {copiedBtc ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copiedBtc ? "Copied!" : "Copy BTC"}
-            </Button>
-          </div>
-          <div className="pt-2">
-            <p><strong className="text-foreground">Ethereum (ETH):</strong></p>
-            <p className="font-mono text-xs break-all">0x71C7656EC7ab88b098defB751B7401B5f6d8976F</p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="mt-2 gap-2 bg-transparent"
-              onClick={() => copyToClipboard("0x71C7656EC7ab88b098defB751B7401B5f6d8976F", "eth")}
-            >
-              {copiedEth ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copiedEth ? "Copied!" : "Copy ETH"}
-            </Button>
-          </div>
-        </div>
       </div>
     </div>
   )
@@ -137,7 +93,7 @@ export function InfoSection() {
   const Footer = () => (
     <div className="mt-16 text-center">
       <p className="font-serif text-xl text-muted-foreground italic">
-        We can't wait to celebrate with you
+        No podemos esperar a celebrar contigo
       </p>
     </div>
   )
@@ -155,7 +111,7 @@ export function InfoSection() {
 
         {/* Scroll indicator to Gifts */}
         <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <ScrollIndicator targetId="gifts" label="Gifts" className="text-foreground" />
+          <ScrollIndicator targetId="gifts" label="Regalos" className="text-foreground" />
         </div>
       </section>
 

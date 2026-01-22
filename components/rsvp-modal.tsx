@@ -70,9 +70,9 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-serif text-2xl">Confirm Your Attendance</DialogTitle>
+          <DialogTitle className="font-serif text-2xl">Confirma tu Asistencia</DialogTitle>
           <DialogDescription className="font-sans">
-            We're excited to have you! Please let us know if you have any dietary restrictions.
+            ¡Estamos emocionados de tenerte! Por favor, indícanos si tienes alguna restricción alimentaria.
           </DialogDescription>
         </DialogHeader>
 
@@ -81,47 +81,47 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
             <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center">
               <Check className="w-8 h-8 text-accent-foreground" />
             </div>
-            <p className="font-serif text-xl text-foreground">Thank you!</p>
-            <p className="text-muted-foreground text-center">We can't wait to celebrate with you.</p>
+            <p className="font-serif text-xl text-foreground">¡Gracias!</p>
+            <p className="text-muted-foreground text-center">No podemos esperar a celebrar contigo.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6 pt-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="font-sans">Your Name</Label>
+              <Label htmlFor="name" className="font-sans">Tu Nombre</Label>
               <Input
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your full name"
+                placeholder="Ingresa tu nombre completo"
                 required
                 className="font-sans"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="dietary" className="font-sans">Dietary Restrictions</Label>
+              <Label htmlFor="dietary" className="font-sans">Restricciones Alimentarias</Label>
               <Select value={dietaryRestrictions} onValueChange={setDietaryRestrictions}>
                 <SelectTrigger className="w-full font-sans">
-                  <SelectValue placeholder="Select dietary restriction" />
+                  <SelectValue placeholder="Selecciona una opción" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="none">None</SelectItem>
-                  <SelectItem value="celiac">Celiac</SelectItem>
-                  <SelectItem value="vegetarian">Vegetarian</SelectItem>
-                  <SelectItem value="vegan">Vegan</SelectItem>
+                  <SelectItem value="none">Ninguna</SelectItem>
+                  <SelectItem value="celiac">Celíaco</SelectItem>
+                  <SelectItem value="vegetarian">Vegetariano</SelectItem>
+                  <SelectItem value="vegan">Vegano</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="transport" className="font-sans">Do you need transport?</Label>
+              <Label htmlFor="transport" className="font-sans">¿Necesitas transporte?</Label>
               <Select value={needsTransport} onValueChange={setNeedsTransport}>
                 <SelectTrigger className="w-full font-sans">
-                  <SelectValue placeholder="Select option" />
+                  <SelectValue placeholder="Selecciona una opción" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="no">No</SelectItem>
-                  <SelectItem value="yes">Yes</SelectItem>
+                  <SelectItem value="yes">Sí</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -138,10 +138,10 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Submitting...
+                  Enviando...
                 </>
               ) : (
-                "Confirm Attendance"
+                "Confirmar Asistencia"
               )}
             </Button>
           </form>

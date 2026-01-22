@@ -29,7 +29,7 @@ export function HeroSection() {
       <div className="relative z-10 text-center px-4">
         <div className="animate-fade-in">
           <p className="text-cream/90 font-body text-sm tracking-[0.3em] uppercase mb-4">
-            We're getting married
+            Nos casamos
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export function HeroSection() {
             className="hover:brightness-110 text-foreground font-sans text-lg px-8 py-6 gap-3"
           >
             <Users className="w-5 h-5" />
-            Confirm Attendance
+            Confirmar Asistencia
           </Button>
         </div>
       </div>
@@ -64,7 +64,7 @@ export function HeroSection() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in-delay-2">
-        <ScrollIndicator targetId="photos" label="Discover our story" className="text-cream" />
+        <ScrollIndicator targetId="photos" label="Descubre nuestra historia" className="text-cream" />
       </div>
     </section>
   )

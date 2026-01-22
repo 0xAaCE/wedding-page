@@ -18,20 +18,20 @@ export function ThankYouSection() {
         </div>
         
         <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8">
-          Thank You
+          Gracias
         </h2>
-        
+
         <div className="space-y-6 font-sans text-lg md:text-xl text-muted-foreground leading-relaxed">
           <p>
-            We are deeply grateful that you will be joining us on this special day. 
-            Your presence means the world to us.
+            Estamos profundamente agradecidos de que nos acompañen en este día tan especial.
+            Su presencia significa todo para nosotros.
           </p>
           <p>
-            Together, we will celebrate love, laughter, and the beginning of our 
-            new chapter. Thank you for being part of our journey.
+            Juntos, celebraremos el amor, la alegría y el comienzo de un nuevo capítulo.
+            Gracias por ser parte de nuestro camino.
           </p>
           <p className="font-serif text-2xl text-foreground italic mt-8">
-            With all our love,<br />
+            Con todo nuestro amor,<br />
             Ale & Clari
           </p>
         </div>
@@ -39,7 +39,7 @@ export function ThankYouSection() {
 
       {/* Scroll indicator - positioned like hero section */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <ScrollIndicator targetId="info" label="Details" className="text-foreground" />
+        <ScrollIndicator targetId="info" label="Detalles" className="text-foreground" />
       </div>
     </section>
   )
