@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollIndicator } from "./scroll-indicator"
@@ -10,11 +11,15 @@ export function HeroSection() {
   const [rsvpOpen, setRsvpOpen] = useState(false)
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/wheat-field.png')" }}
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-[#8B7355]">
+      {/* Background Image with priority loading */}
+      <Image
+        src="/images/wheat-field.jpg"
+        alt="Wheat field background"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
       />
 
       {/* Overlay */}
