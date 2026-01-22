@@ -11,7 +11,7 @@ export function HeroSection() {
   const [rsvpOpen, setRsvpOpen] = useState(false)
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-[#8B7355]">
+    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#8B7355]">
       {/* Background Image with priority loading */}
       <Image
         src="/images/wheat-field.jpg"
@@ -62,8 +62,8 @@ export function HeroSection() {
 
       <RsvpModal open={rsvpOpen} onOpenChange={setRsvpOpen} />
 
-      {/* Scroll Indicator - positioned with safe area for mobile */}
-      <div className="absolute bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in-delay-2 pb-safe">
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in-delay-2">
         <ScrollIndicator targetId="photos" label="Discover our story" className="text-cream" />
       </div>
     </section>
