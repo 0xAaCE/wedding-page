@@ -50,18 +50,18 @@ export function PhotoCarousel() {
   }, [nextSlide])
 
   return (
-    <section id="photos" className="relative h-screen flex flex-col bg-card pt-8 pb-20">
-      <h2 className="font-serif text-4xl md:text-5xl text-center text-foreground mb-2 px-4">
+    <section id="photos" className="relative min-h-[100dvh] flex flex-col bg-card py-8">
+      <h2 className="font-serif text-3xl md:text-5xl text-center text-foreground mb-2 px-4">
         Our Journey
       </h2>
-      <p className="text-center text-muted-foreground font-sans mb-6 max-w-xl mx-auto px-4">
+      <p className="text-center text-muted-foreground font-sans mb-4 md:mb-6 max-w-xl mx-auto px-4 text-sm md:text-base">
         A glimpse into our story together
       </p>
-      
-      <div className="flex-1 flex items-center justify-center px-4">
-        <div className="relative w-full max-w-5xl h-full max-h-[65vh]">
+
+      <div className="flex-1 flex items-center justify-center px-4 pb-16">
+        <div className="relative w-full max-w-5xl aspect-[5/4] md:aspect-video">
           {/* Main carousel container */}
-          <div className="relative w-full h-full overflow-hidden rounded-lg shadow-xl">
+          <div className="relative w-full h-full overflow-hidden rounded-lg shadow-xl bg-muted">
             {photos.map((photo, index) => (
               <div
                 key={photo.id}
@@ -117,7 +117,7 @@ export function PhotoCarousel() {
       </div>
 
       {/* Scroll indicator - positioned like hero section */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+      <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
         <ScrollIndicator targetId="thanks" label="Thank You" className="text-foreground" />
       </div>
     </section>

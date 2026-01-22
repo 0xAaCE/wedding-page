@@ -48,7 +48,7 @@ export function InfoSection() {
       </div>
 
       {/* Embedded Map */}
-      <div className="aspect-video rounded-lg overflow-hidden shadow-lg border border-border">
+      <div className="aspect-[4/3] md:aspect-video rounded-lg overflow-hidden shadow-lg border border-border">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016888423!2d-58.3815704!3d-34.6036844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sBuenos%20Aires%2C%20Argentina!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
           width="100%"
@@ -154,7 +154,7 @@ export function InfoSection() {
         </div>
 
         {/* Scroll indicator to Gifts */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
           <ScrollIndicator targetId="gifts" label="Gifts" className="text-foreground" />
         </div>
       </section>
