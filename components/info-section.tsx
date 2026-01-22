@@ -148,7 +148,7 @@ export function InfoSection() {
       <div id="info" />
 
       {/* Mobile: Venue Section */}
-      <section className="relative min-h-[100dvh] flex flex-col items-center justify-center bg-card py-16 md:hidden">
+      <section className="relative min-h-[100svh] flex flex-col items-center justify-center bg-card py-16 md:hidden">
         <div className="max-w-6xl mx-auto px-4 w-full pb-16">
           <VenueContent />
         </div>
@@ -160,7 +160,7 @@ export function InfoSection() {
       </section>
 
       {/* Mobile: Gifts Section */}
-      <section id="gifts" className="relative min-h-[100dvh] flex flex-col items-center justify-center bg-secondary py-16 md:hidden">
+      <section id="gifts" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-secondary py-16 md:hidden">
         <div className="max-w-6xl mx-auto px-4 w-full">
           <GiftsContent />
         </div>
@@ -168,7 +168,7 @@ export function InfoSection() {
       </section>
 
       {/* Desktop: Combined Section */}
-      <section className="relative min-h-[100dvh] hidden md:flex flex-col items-center justify-center bg-card py-16">
+      <section className="relative min-h-[100svh] hidden md:flex flex-col items-center justify-center bg-card py-16">
         <div className="max-w-6xl mx-auto px-4 w-full">
           <div className="grid md:grid-cols-2 gap-12 md:gap-8">
             <VenueContent />

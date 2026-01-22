@@ -11,7 +11,7 @@ export function HeroSection() {
   const [rsvpOpen, setRsvpOpen] = useState(false)
 
   return (
-    <section id="hero" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-[#8B7355]">
+    <section id="hero" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-[#8B7355]">
       {/* Background Image with priority loading */}
       <Image
         src="/images/wheat-field.jpg"

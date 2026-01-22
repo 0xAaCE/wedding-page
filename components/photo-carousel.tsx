@@ -89,7 +89,7 @@ export function PhotoCarousel() {
   }
 
   return (
-    <section id="photos" className="relative min-h-[100dvh] flex flex-col bg-card py-8">
+    <section id="photos" className="relative min-h-[100svh] flex flex-col bg-card py-8">
       <h2 className="font-serif text-3xl md:text-5xl text-center text-foreground mb-2 px-4">
         Our Journey
       </h2>
