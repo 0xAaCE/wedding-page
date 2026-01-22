@@ -14,23 +14,27 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'Ale & Clari - Wedding',
   description: 'Join us for our special day - March 14, 2026',
-  generator: 'v0.app',
-  icons: {
-    icon: [
+  openGraph: {
+    title: 'Ale & Clari - Wedding',
+    description: 'Join us for our special day - March 14, 2026',
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: '/images/wheat-field.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ale & Clari Wedding',
       },
     ],
-    apple: '/apple-icon.png',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ale & Clari - Wedding',
+    description: 'Join us for our special day - March 14, 2026',
+    images: ['/images/wheat-field.jpg'],
+  },
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
   },
 }
 
