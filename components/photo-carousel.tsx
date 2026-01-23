@@ -6,36 +6,23 @@ import { Button } from "@/components/ui/button"
 import { ScrollIndicator } from "./scroll-indicator"
 
 const photos = [
-  {
-    id: 1,
-    src: "/images/carousel/photo-1.jpg",
-    alt: "Ale y Clari"
-  },
-  {
-    id: 2,
-    src: "/images/carousel/photo-2.jpg",
-    alt: "Ale y Clari"
-  },
-  {
-    id: 3,
-    src: "/images/carousel/photo-3.jpg",
-    alt: "Ale y Clari"
-  },
-  {
-    id: 4,
-    src: "/images/carousel/photo-4.jpg",
-    alt: "Ale y Clari"
-  },
-  {
-    id: 5,
-    src: "/images/carousel/photo-5.jpg",
-    alt: "Ale y Clari"
-  },
-  {
-    id: 6,
-    src: "/images/carousel/photo-6.jpg",
-    alt: "Ale y Clari"
-  }
+  { id: 1, src: "/images/carousel/photo-01.jpg", alt: "Ale y Clari" },
+  { id: 2, src: "/images/carousel/photo-02.jpg", alt: "Ale y Clari" },
+  { id: 3, src: "/images/carousel/photo-03.jpg", alt: "Ale y Clari" },
+  { id: 4, src: "/images/carousel/photo-04.jpg", alt: "Ale y Clari" },
+  { id: 5, src: "/images/carousel/photo-05.jpg", alt: "Ale y Clari" },
+  { id: 6, src: "/images/carousel/photo-06.jpg", alt: "Ale y Clari" },
+  { id: 7, src: "/images/carousel/photo-07.jpg", alt: "Ale y Clari" },
+  { id: 8, src: "/images/carousel/photo-08.jpg", alt: "Ale y Clari" },
+  { id: 9, src: "/images/carousel/photo-09.jpg", alt: "Ale y Clari" },
+  { id: 10, src: "/images/carousel/photo-10.jpg", alt: "Ale y Clari" },
+  { id: 11, src: "/images/carousel/photo-11.jpg", alt: "Ale y Clari" },
+  { id: 12, src: "/images/carousel/photo-12.jpg", alt: "Ale y Clari" },
+  { id: 13, src: "/images/carousel/photo-13.jpg", alt: "Ale y Clari" },
+  { id: 14, src: "/images/carousel/photo-14.jpg", alt: "Ale y Clari" },
+  { id: 15, src: "/images/carousel/photo-15.jpg", alt: "Ale y Clari" },
+  { id: 16, src: "/images/carousel/photo-16.jpg", alt: "Ale y Clari" },
+  { id: 17, src: "/images/carousel/photo-17.jpg", alt: "Ale y Clari" },
 ]
 
 export function PhotoCarousel() {
