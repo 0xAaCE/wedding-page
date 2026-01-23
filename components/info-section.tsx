@@ -105,15 +105,6 @@ export function InfoSection() {
     </div>
   )
 
-  // Footer component
-  const Footer = () => (
-    <div className="mt-16 text-center">
-      <p className="font-serif text-xl text-muted-foreground italic">
-        No podemos esperar a celebrar contigo
-      </p>
-    </div>
-  )
-
   return (
     <>
       {/* Scroll target for navigation */}
@@ -145,15 +136,19 @@ export function InfoSection() {
 
       {/* Mobile: Gifts Section */}
       <section id="gifts" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-card py-16 md:hidden">
-        <div className="max-w-6xl mx-auto px-4 w-full">
+        <div className="max-w-6xl mx-auto px-4 w-full pb-16">
           <GiftsContent />
         </div>
-        <Footer />
+
+        {/* Scroll indicator to Gracias */}
+        <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
+          <ScrollIndicator targetId="thanks" label="Gracias" className="text-foreground" />
+        </div>
       </section>
 
       {/* Desktop: Combined Section */}
       <section className="relative min-h-[100svh] hidden md:flex flex-col items-center justify-center bg-card py-16">
-        <div className="max-w-6xl mx-auto px-4 w-full">
+        <div className="max-w-6xl mx-auto px-4 w-full pb-16">
           <div className="grid md:grid-cols-2 gap-12 md:gap-8">
             <VenueContent />
             <div className="space-y-12">
@@ -162,7 +157,11 @@ export function InfoSection() {
             </div>
           </div>
         </div>
-        <Footer />
+
+        {/* Scroll indicator to Gracias */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+          <ScrollIndicator targetId="thanks" label="Gracias" className="text-foreground" />
+        </div>
       </section>
     </>
   )
