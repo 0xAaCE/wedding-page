@@ -8,28 +8,33 @@ import { ScrollIndicator } from "./scroll-indicator"
 const photos = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=800&fit=crop",
-    alt: "Couple holding hands"
+    src: "/images/carousel/photo-1.jpg",
+    alt: "Ale y Clari"
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&h=800&fit=crop",
-    alt: "Wedding rings"
+    src: "/images/carousel/photo-2.jpg",
+    alt: "Ale y Clari"
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&h=800&fit=crop",
-    alt: "Beautiful sunset"
+    src: "/images/carousel/photo-3.jpg",
+    alt: "Ale y Clari"
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&h=800&fit=crop",
-    alt: "Engagement photo"
+    src: "/images/carousel/photo-4.jpg",
+    alt: "Ale y Clari"
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&h=800&fit=crop",
-    alt: "Happy couple"
+    src: "/images/carousel/photo-5.jpg",
+    alt: "Ale y Clari"
+  },
+  {
+    id: 6,
+    src: "/images/carousel/photo-6.jpg",
+    alt: "Ale y Clari"
   }
 ]
 
@@ -89,7 +94,7 @@ export function PhotoCarousel() {
   }
 
   return (
-    <section id="photos" className="relative min-h-[100svh] flex flex-col bg-card py-8">
+    <section id="photos" className="relative min-h-[100svh] flex flex-col bg-card pt-6 pb-8">
       <h2 className="font-serif text-3xl md:text-5xl text-center text-foreground mb-2 px-4">
         Nuestra Historia
       </h2>
@@ -97,11 +102,11 @@ export function PhotoCarousel() {
         Un vistazo a nuestra historia juntos
       </p>
 
-      <div className="flex-1 flex items-center justify-center px-4 pb-16">
-        <div className="relative w-full max-w-5xl aspect-[5/4] md:aspect-video">
-          {/* Main carousel container */}
+      <div className="flex-1 flex items-center justify-center px-4">
+        {/* Mobile: Single image carousel */}
+        <div className="md:hidden relative w-full max-w-xs">
           <div
-            className="relative w-full h-full overflow-hidden rounded-lg shadow-xl bg-muted"
+            className="relative aspect-[3/4] overflow-hidden rounded-lg shadow-xl bg-muted"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -121,11 +126,11 @@ export function PhotoCarousel() {
             ))}
           </div>
 
-          {/* Navigation buttons */}
+          {/* Mobile navigation buttons */}
           <Button
             variant="outline"
             size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
             onClick={handlePrev}
             aria-label="Previous photo"
           >
@@ -134,7 +139,7 @@ export function PhotoCarousel() {
           <Button
             variant="outline"
             size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
             onClick={handleNext}
             aria-label="Next photo"
           >
@@ -161,10 +166,88 @@ export function PhotoCarousel() {
             ))}
           </div>
         </div>
+
+        {/* Desktop: 3-image carousel with center focus */}
+        <div className="hidden md:block relative w-full max-w-6xl">
+          <div className="flex items-center justify-center gap-12 h-[450px]">
+            {/* Previous image (left) */}
+            <div
+              className="relative w-56 h-[400px] rounded-lg overflow-hidden shadow-lg cursor-pointer transition-all duration-500 opacity-60 hover:opacity-80"
+              onClick={handlePrev}
+            >
+              <img
+                src={photos[(currentIndex - 1 + photos.length) % photos.length].src || "/placeholder.svg"}
+                alt={photos[(currentIndex - 1 + photos.length) % photos.length].alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Current image (center) */}
+            <div className="relative w-56 h-[400px] rounded-lg overflow-hidden shadow-2xl z-10 transition-all duration-500">
+              <img
+                src={photos[currentIndex].src || "/placeholder.svg"}
+                alt={photos[currentIndex].alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Next image (right) */}
+            <div
+              className="relative w-56 h-[400px] rounded-lg overflow-hidden shadow-lg cursor-pointer transition-all duration-500 opacity-60 hover:opacity-80"
+              onClick={handleNext}
+            >
+              <img
+                src={photos[(currentIndex + 1) % photos.length].src || "/placeholder.svg"}
+                alt={photos[(currentIndex + 1) % photos.length].alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Desktop navigation buttons */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute left-8 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
+            onClick={handlePrev}
+            aria-label="Previous photo"
+          >
+            <ChevronLeft className="h-5 w-5 text-foreground" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute right-8 top-1/2 -translate-y-1/2 bg-card/80 hover:bg-card border-border rounded-full shadow-lg"
+            onClick={handleNext}
+            aria-label="Next photo"
+          >
+            <ChevronRight className="h-5 w-5 text-foreground" />
+          </Button>
+
+          {/* Dots indicator */}
+          <div className="flex justify-center gap-1 mt-6">
+            {photos.map((photo, index) => (
+              <button
+                key={photo.id}
+                onClick={() => handleDotClick(index)}
+                className="w-8 h-8 flex items-center justify-center"
+                aria-label={`Go to photo ${index + 1}`}
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-primary w-6"
+                      : "bg-border hover:bg-muted-foreground w-2"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Scroll indicator - positioned like hero section */}
-      <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
+      {/* Scroll indicator */}
+      <div className="py-4 flex justify-center">
         <ScrollIndicator targetId="thanks" label="Gracias" className="text-foreground" />
       </div>
     </section>

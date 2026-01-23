@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin, Copy, Check, Gift } from "lucide-react"
+import { MapPin, Copy, Check, Gift, Shirt } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { ScrollIndicator } from "./scroll-indicator"
@@ -20,27 +20,27 @@ export function InfoSection() {
       <div className="flex items-center gap-3 mb-4">
         <MapPin className="w-6 h-6 text-primary" />
         <h3 className="font-serif text-3xl md:text-4xl text-foreground">
-          Lugar
+          Venue
         </h3>
       </div>
 
       <div className="space-y-4 font-sans text-muted-foreground">
         <p className="text-lg">
-          <strong className="text-foreground">Estancia El Campo</strong>
+          <strong className="text-foreground">Estación Fátima Eventos</strong>
         </p>
         <p>
-          Ruta Provincial 25, Km 45<br />
-          Buenos Aires, Argentina
+          Isla Jorge 290<br />
+          B1633DBE Fátima, Provincia de Buenos Aires
         </p>
         <p className="text-sm">
-          Sábado 14 de marzo de 2026 a las 17:00 hs
+          Sábado 14 de marzo de 2026 a las 12:00 hs
         </p>
       </div>
 
       {/* Embedded Map */}
       <div className="aspect-[4/3] md:aspect-video rounded-lg overflow-hidden shadow-lg border border-border">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016888423!2d-58.3815704!3d-34.6036844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sBuenos%20Aires%2C%20Argentina!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3292.5!2d-58.9923492!3d-34.4357678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc820b778e6a25%3A0x9cde5ab639d2b44b!2sEstaci%C3%B3n%20F%C3%A1tima%20Eventos!5e0!3m2!1ses!2sar!4v1705000000000!5m2!1ses!2sar"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -50,6 +50,22 @@ export function InfoSection() {
           title="Wedding venue location"
         />
       </div>
+    </div>
+  )
+
+  // Dress code content component
+  const VestimentaContent = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-3 mb-4">
+        <Shirt className="w-6 h-6 text-primary" />
+        <h3 className="font-serif text-3xl md:text-4xl text-foreground">
+          Vestimenta
+        </h3>
+      </div>
+
+      <p className="font-sans text-muted-foreground">
+        El código de vestimenta es <strong className="text-foreground">elegante</strong>. Te recomendamos traer un cambio de ropa por si el clima nos acompaña y podemos disfrutar de la pileta.
+      </p>
     </div>
   )
 
@@ -109,6 +125,18 @@ export function InfoSection() {
           <VenueContent />
         </div>
 
+        {/* Scroll indicator to Vestimenta */}
+        <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
+          <ScrollIndicator targetId="vestimenta" label="Vestimenta" className="text-foreground" />
+        </div>
+      </section>
+
+      {/* Mobile: Vestimenta Section */}
+      <section id="vestimenta" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-secondary py-16 md:hidden">
+        <div className="max-w-6xl mx-auto px-4 w-full pb-16">
+          <VestimentaContent />
+        </div>
+
         {/* Scroll indicator to Gifts */}
         <div className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
           <ScrollIndicator targetId="gifts" label="Regalos" className="text-foreground" />
@@ -116,7 +144,7 @@ export function InfoSection() {
       </section>
 
       {/* Mobile: Gifts Section */}
-      <section id="gifts" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-secondary py-16 md:hidden">
+      <section id="gifts" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-card py-16 md:hidden">
         <div className="max-w-6xl mx-auto px-4 w-full">
           <GiftsContent />
         </div>
@@ -128,7 +156,10 @@ export function InfoSection() {
         <div className="max-w-6xl mx-auto px-4 w-full">
           <div className="grid md:grid-cols-2 gap-12 md:gap-8">
             <VenueContent />
-            <GiftsContent />
+            <div className="space-y-12">
+              <VestimentaContent />
+              <GiftsContent />
+            </div>
           </div>
         </div>
         <Footer />

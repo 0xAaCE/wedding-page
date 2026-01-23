@@ -5,7 +5,7 @@ import { ScrollIndicator } from "./scroll-indicator"
 export function ThankYouSection() {
   return (
     <section id="thanks" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-secondary">
-      <div className="max-w-3xl mx-auto px-4 text-center">
+      <div className="max-w-3xl mx-auto px-4 text-center pb-20">
         <div className="mb-8">
           <svg 
             className="w-12 h-12 mx-auto text-primary" 
@@ -17,18 +17,11 @@ export function ThankYouSection() {
           </svg>
         </div>
         
-        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-8">
-          Gracias
-        </h2>
-
         <div className="space-y-6 font-sans text-lg md:text-xl text-muted-foreground leading-relaxed">
           <p>
-            Estamos profundamente agradecidos de que nos acompañen en este día tan especial.
-            Su presencia significa todo para nosotros.
-          </p>
-          <p>
-            Juntos, celebraremos el amor, la alegría y el comienzo de un nuevo capítulo.
-            Gracias por ser parte de nuestro camino.
+            <strong className="text-foreground block mb-2 text-2xl md:text-3xl">Gracias</strong>
+            por acompañarnos en este día tan especial.<br />
+            Su presencia es el mejor regalo que podemos recibir.
           </p>
           <p className="font-serif text-2xl text-foreground italic mt-8">
             Con todo nuestro amor,<br />
