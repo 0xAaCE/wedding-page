@@ -68,7 +68,7 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md max-h-[85dvh] overflow-y-auto">
+      <DialogContent className="sm:max-w-md max-h-[90dvh] flex flex-col overflow-hidden">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl">Confirma tu Asistencia</DialogTitle>
           <DialogDescription className="font-sans">
@@ -76,76 +76,78 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
           </DialogDescription>
         </DialogHeader>
 
-        {isSuccess ? (
-          <div className="flex flex-col items-center justify-center py-8 gap-4">
-            <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center">
-              <Check className="w-8 h-8 text-accent-foreground" />
+        <div className="flex-1 overflow-y-auto min-h-0">
+          {isSuccess ? (
+            <div className="flex flex-col items-center justify-center py-8 gap-4">
+              <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center">
+                <Check className="w-8 h-8 text-accent-foreground" />
+              </div>
+              <p className="font-serif text-xl text-foreground">¡Gracias!</p>
+              <p className="text-muted-foreground text-center">No podemos esperar a celebrar contigo.</p>
             </div>
-            <p className="font-serif text-xl text-foreground">¡Gracias!</p>
-            <p className="text-muted-foreground text-center">No podemos esperar a celebrar contigo.</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6 pt-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="font-sans">Tu Nombre</Label>
-              <Input
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Ingresa tu nombre completo"
-                required
-                className="font-sans"
-              />
-            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6 pt-4 pb-2">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="font-sans">Tu Nombre</Label>
+                <Input
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ingresa tu nombre completo"
+                  required
+                  className="font-sans"
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="dietary" className="font-sans">Restricciones Alimentarias</Label>
-              <Select value={dietaryRestrictions} onValueChange={setDietaryRestrictions}>
-                <SelectTrigger className="w-full font-sans">
-                  <SelectValue placeholder="Selecciona una opción" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">Ninguna</SelectItem>
-                  <SelectItem value="celiac">Celíaco</SelectItem>
-                  <SelectItem value="vegetarian">Vegetariano</SelectItem>
-                  <SelectItem value="vegan">Vegano</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="dietary" className="font-sans">Restricciones Alimentarias</Label>
+                <Select value={dietaryRestrictions} onValueChange={setDietaryRestrictions}>
+                  <SelectTrigger className="w-full font-sans">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">Ninguna</SelectItem>
+                    <SelectItem value="celiac">Celíaco</SelectItem>
+                    <SelectItem value="vegetarian">Vegetariano</SelectItem>
+                    <SelectItem value="vegan">Vegano</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="transport" className="font-sans">Organizaremos transporte desde Urquiza hasta la ceremonia, te sumas?</Label>
-              <Select value={needsTransport} onValueChange={setNeedsTransport}>
-                <SelectTrigger className="w-full font-sans">
-                  <SelectValue placeholder="Selecciona una opción" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="no">No</SelectItem>
-                  <SelectItem value="yes">Sí</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+              <div className="space-y-2">
+                <Label htmlFor="transport" className="font-sans">Organizaremos transporte desde Urquiza hasta la ceremonia, te sumas?</Label>
+                <Select value={needsTransport} onValueChange={setNeedsTransport}>
+                  <SelectTrigger className="w-full font-sans">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="no">No</SelectItem>
+                    <SelectItem value="yes">Sí</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
 
-            {error && (
-              <p className="text-sm text-destructive">{error}</p>
-            )}
-
-            <Button
-              type="submit"
-              className="w-full font-sans"
-              disabled={isSubmitting || !name.trim()}
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Enviando...
-                </>
-              ) : (
-                "Confirmar Asistencia"
+              {error && (
+                <p className="text-sm text-destructive">{error}</p>
               )}
-            </Button>
-          </form>
-        )}
+
+              <Button
+                type="submit"
+                className="w-full font-sans"
+                disabled={isSubmitting || !name.trim()}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  "Confirmar Asistencia"
+                )}
+              </Button>
+            </form>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   )
