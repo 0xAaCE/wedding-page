@@ -68,7 +68,7 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[85dvh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl">Confirma tu Asistencia</DialogTitle>
           <DialogDescription className="font-sans">
@@ -114,7 +114,7 @@ export function RsvpModal({ open, onOpenChange }: RsvpModalProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="transport" className="font-sans">¿Necesitas transporte?</Label>
+              <Label htmlFor="transport" className="font-sans">Organizaremos transporte desde Urquiza hasta la ceremonia, te sumas?</Label>
               <Select value={needsTransport} onValueChange={setNeedsTransport}>
                 <SelectTrigger className="w-full font-sans">
                   <SelectValue placeholder="Selecciona una opción" />

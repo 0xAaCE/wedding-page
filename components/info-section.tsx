@@ -26,14 +26,10 @@ export function InfoSection() {
 
       <div className="space-y-4 font-sans text-muted-foreground">
         <p className="text-lg">
-          <strong className="text-foreground">Estación Fátima Eventos</strong>
+          <strong className="text-foreground">Estación Fátima Eventos ~ 14/03/2026 a las 12:00 hs</strong>
         </p>
         <p>
-          Isla Jorge 290<br />
-          B1633DBE Fátima, Provincia de Buenos Aires
-        </p>
-        <p className="text-sm">
-          Sábado 14 de marzo de 2026 a las 12:00 hs
+          Isla Jorge 290, Fátima,<br/>Provincia de Buenos Aires
         </p>
       </div>
 
@@ -64,7 +60,8 @@ export function InfoSection() {
       </div>
 
       <p className="font-sans text-muted-foreground">
-        El código de vestimenta es <strong className="text-foreground">elegante</strong>. Te recomendamos traer un cambio de ropa por si el clima nos acompaña y podemos disfrutar de la pileta.
+        El código de vestimenta es <strong className="text-foreground underline underline-offset-4">elegante</strong>. 
+        Te recomendamos traer un <span className="text-foreground underline underline-offset-4">cambio de ropa</span> por si el clima nos acompaña y podemos disfrutar de la pileta.
       </p>
     </div>
   )

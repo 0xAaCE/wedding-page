@@ -64,7 +64,7 @@ export function HeroSection() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in-delay-2">
-        <ScrollIndicator targetId="photos" label="Descubre nuestra historia" className="text-cream" />
+        <ScrollIndicator targetId="photos" label="Mas info" className="text-cream" />
       </div>
     </section>
   )
