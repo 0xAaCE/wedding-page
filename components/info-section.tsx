@@ -87,7 +87,7 @@ export function InfoSection() {
           <p><strong className="text-foreground">Banco:</strong> Banco Santander</p>
           <p><strong className="text-foreground">Titular:</strong> Alejo & Clara</p>
           <p><strong className="text-foreground">CBU:</strong> 0720049688000003143186</p>
-          <p><strong className="text-foreground">Alias:</strong> ALE.CLA.SANTANDER</p>
+          <p><strong className="text-foreground">Alias:</strong> ALE.Y.CLA.SANTANDER</p>
         </div>
         <Button
           variant="outline"
