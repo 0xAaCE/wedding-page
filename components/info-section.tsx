@@ -84,10 +84,10 @@ export function InfoSection() {
       <div className="bg-secondary md:bg-card rounded-lg p-5 space-y-3">
         <h4 className="font-serif text-lg text-foreground">Transferencia Bancaria</h4>
         <div className="font-sans text-sm text-muted-foreground space-y-1">
-          <p><strong className="text-foreground">Banco:</strong> Banco Galicia</p>
-          <p><strong className="text-foreground">Titular:</strong> Alejandro & Clarisa</p>
-          <p><strong className="text-foreground">CBU:</strong> 0070999030004123456789</p>
-          <p><strong className="text-foreground">Alias:</strong> ALE.CLARI.BODA</p>
+          <p><strong className="text-foreground">Banco:</strong> Banco Santander</p>
+          <p><strong className="text-foreground">Titular:</strong> Alejo & Clara</p>
+          <p><strong className="text-foreground">CBU:</strong> 0720049688000003143186</p>
+          <p><strong className="text-foreground">Alias:</strong> ALE.CLA.SANTANDER</p>
         </div>
         <Button
           variant="outline"
