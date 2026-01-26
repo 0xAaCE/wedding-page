@@ -2,14 +2,16 @@
 
 import React, { useState, useRef } from "react"
 import Link from "next/link"
-import { Loader2, Check, Upload, X, ImageIcon, ArrowLeft } from "lucide-react"
+import { Loader2, Check, X, ImageIcon, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { PolaroidGallery } from "@/components/polaroid-gallery"
 
 export default function SharePhotosPage() {
   const [files, setFiles] = useState<File[]>([])
   const [isUploading, setIsUploading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState("")
+  const [uploadProgress, setUploadProgress] = useState({ current: 0, total: 0 })
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,36 +32,43 @@ export default function SharePhotosPage() {
 
     setIsUploading(true)
     setError("")
+    setUploadProgress({ current: 0, total: files.length })
 
-    try {
-      const formData = new FormData()
-      files.forEach((file) => {
-        formData.append("photos", file)
-      })
+    let successCount = 0
+    let failCount = 0
 
-      const response = await fetch("/api/upload-photos", {
-        method: "POST",
-        body: formData,
-      })
+    for (let i = 0; i < files.length; i++) {
+      setUploadProgress({ current: i + 1, total: files.length })
 
-      if (!response.ok) {
-        throw new Error("Failed to upload photos")
+      try {
+        const formData = new FormData()
+        formData.append("photos", files[i])
+
+        const response = await fetch("/api/upload-photos", {
+          method: "POST",
+          body: formData,
+        })
+
+        if (response.ok) {
+          successCount++
+        } else {
+          failCount++
+        }
+      } catch {
+        failCount++
       }
-
-      setIsSuccess(true)
-    } catch (err) {
-      setError("Something went wrong. Please try again.")
-    } finally {
-      setIsUploading(false)
     }
-  }
 
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    const droppedFiles = Array.from(e.dataTransfer.files).filter(
-      file => file.type.startsWith("image/")
-    )
-    setFiles(prev => [...prev, ...droppedFiles])
+    setIsUploading(false)
+
+    if (successCount > 0) {
+      setIsSuccess(true)
+      if (failCount > 0) {
+        setError(`${failCount} photo${failCount !== 1 ? "s" : ""} failed to upload`)
+      }
+    } else {
+      setError("Failed to upload photos. Please try again.")
+    }
   }
 
   const handleReset = () => {
@@ -68,68 +77,48 @@ export default function SharePhotosPage() {
   }
 
   return (
-    <div className="min-h-screen bg-secondary flex flex-col">
-      {/* Header */}
-      <header className="p-4 md:p-6">
-        <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-sans">
-          <ArrowLeft className="w-4 h-4" />
-          Back to Home
-        </Link>
-      </header>
+    <div className="min-h-screen bg-secondary flex flex-col relative">
+      {/* Floating Polaroid Gallery Background */}
+      <PolaroidGallery limit={20} />
 
-      {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center px-4 py-8">
+      {/* Title - positioned at top */}
+      <div className="px-4 pt-4 relative z-10">
+        <div className="text-center bg-secondary/80 backdrop-blur-sm rounded-2xl px-6 py-6 max-w-2xl mx-auto">
+          <h1 className="font-serif text-4xl md:text-5xl text-foreground">
+            Comparte tus fotos del casamiento
+          </h1>
+        </div>
+      </div>
+
+      {/* Main Content - positioned at bottom */}
+      <main className="flex-1 flex items-end justify-center px-4 py-8 relative z-10">
         <div className="w-full max-w-2xl">
-          <div className="text-center mb-8">
-            <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-4">
-              Share Your Photos
-            </h1>
-            <p className="text-muted-foreground font-sans text-lg max-w-md mx-auto">
-              Upload your favorite moments from our celebration. We can't wait to see them!
-            </p>
-          </div>
-
-          <div className="bg-card rounded-xl shadow-lg p-6 md:p-8">
+          <div className="bg-card/95 backdrop-blur-sm rounded-xl shadow-lg p-6 md:p-8">
             {isSuccess ? (
               <div className="flex flex-col items-center justify-center py-12 gap-6">
                 <div className="w-20 h-20 rounded-full bg-accent flex items-center justify-center">
                   <Check className="w-10 h-10 text-accent-foreground" />
                 </div>
                 <div className="text-center">
-                  <p className="font-serif text-2xl text-foreground mb-2">Photos Uploaded!</p>
-                  <p className="text-muted-foreground">Thank you for sharing these memories with us.</p>
+                  <p className="font-serif text-2xl text-foreground mb-2">Foto subida!</p>
+                  <p className="text-muted-foreground">Gracias por compartir estas recuerdos con nosotros.</p>
                 </div>
                 <div className="flex gap-4 mt-4">
                   <Button onClick={handleReset} variant="outline" className="font-sans">
-                    Upload More Photos
+                    Subir más fotos
                   </Button>
-                  <Link href="/">
-                    <Button className="font-sans">
-                      Back to Home
-                    </Button>
-                  </Link>
                 </div>
               </div>
             ) : (
               <div className="space-y-6">
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  onDrop={handleDrop}
-                  onDragOver={(e) => e.preventDefault()}
-                  className="border-2 border-dashed border-border rounded-lg p-12 text-center cursor-pointer hover:border-primary transition-colors"
-                >
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleFileChange}
-                    className="hidden"
-                  />
-                  <Upload className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <p className="font-sans text-foreground text-lg mb-2">Click or drag photos here</p>
-                  <p className="text-sm text-muted-foreground">JPG, PNG, HEIC up to 10MB each</p>
-                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
 
                 {files.length > 0 && (
                   <div className="space-y-4">
@@ -164,20 +153,25 @@ export default function SharePhotosPage() {
                 )}
 
                 <Button
-                  onClick={handleUpload}
+                  onClick={files.length === 0 ? () => fileInputRef.current?.click() : handleUpload}
                   className="w-full font-sans text-lg py-6"
                   size="lg"
-                  disabled={isUploading || files.length === 0}
+                  disabled={isUploading}
                 >
                   {isUploading ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Uploading...
+                      Subiendo {uploadProgress.current}/{uploadProgress.total}...
+                    </>
+                  ) : files.length === 0 ? (
+                    <>
+                      <ImageIcon className="w-5 h-5 mr-2" />
+                      Seleccionar fotos
                     </>
                   ) : (
                     <>
                       <ImageIcon className="w-5 h-5 mr-2" />
-                      Upload {files.length > 0 ? `${files.length} Photo${files.length !== 1 ? "s" : ""}` : "Photos"}
+                      Subir {files.length} foto{files.length !== 1 ? "s" : ""}
                     </>
                   )}
                 </Button>
@@ -188,13 +182,15 @@ export default function SharePhotosPage() {
       </main>
 
       {/* Footer */}
-      <footer className="p-6 text-center">
-        <p className="font-serif text-xl text-foreground italic">
-          Ale & Clari
-        </p>
-        <p className="text-muted-foreground font-sans text-sm mt-1">
-          14 / 03 / 2026
-        </p>
+      <footer className="p-6 text-center relative z-10">
+        <div className="inline-block bg-secondary/80 backdrop-blur-sm rounded-xl px-6 py-3">
+          <p className="font-serif text-xl text-foreground italic">
+            Ale & Clari
+          </p>
+          <p className="text-muted-foreground font-sans text-sm mt-1">
+            14 / 03 / 2026
+          </p>
+        </div>
       </footer>
     </div>
   )
