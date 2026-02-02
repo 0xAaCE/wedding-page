@@ -1,6 +1,13 @@
 "use client"
 
+import { useState } from "react"
+import { Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { RsvpModal } from "./rsvp-modal"
+
 export function ThankYouSection() {
+  const [rsvpOpen, setRsvpOpen] = useState(false)
+
   return (
     <section id="thanks" className="relative min-h-[100svh] flex flex-col items-center justify-center bg-secondary">
       <div className="max-w-3xl mx-auto px-4 text-center">
@@ -26,7 +33,19 @@ export function ThankYouSection() {
             Ale & Clari
           </p>
         </div>
+
+        <Button
+          onClick={() => setRsvpOpen(true)}
+          size="lg"
+          style={{ backgroundColor: "hsla(38, 55%, 80%, 0.3)", boxShadow: "0 0 15px rgba(255, 200, 100, 0.25), 0 0 30px rgba(255, 180, 80, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)" }}
+          className="hover:brightness-110 text-foreground font-sans text-lg px-8 py-6 gap-3 mt-10"
+        >
+          <Users className="w-5 h-5" />
+          Confirmar Asistencia
+        </Button>
       </div>
+
+      <RsvpModal open={rsvpOpen} onOpenChange={setRsvpOpen} />
     </section>
   )
 }
