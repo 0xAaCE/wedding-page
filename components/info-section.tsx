@@ -93,7 +93,7 @@ export function InfoSection() {
           variant="outline"
           size="sm"
           className="mt-2 gap-2 bg-transparent"
-          onClick={() => copyToClipboard("0070999030004123456789")}
+          onClick={() => copyToClipboard("0720049688000003143186")}
         >
           {copiedBank ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
           {copiedBank ? "¡Copiado!" : "Copiar CBU"}
