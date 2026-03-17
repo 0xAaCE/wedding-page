@@ -34,6 +34,8 @@ export function PolaroidPhoto({ src, alt, rotation = 0, className = "" }: Polaro
         <img
           src={src}
           alt={alt}
+          loading="lazy"
+          decoding="async"
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}

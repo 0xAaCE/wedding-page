@@ -104,9 +104,12 @@ export function PolaroidGallery({ limit }: PolaroidGalleryProps = {}) {
     }
   }, [limit])
 
-  // Initial load
+  // Initial load — delayed 500ms so main UI paints first
   useEffect(() => {
-    fetchPhotos()
+    const timer = setTimeout(() => {
+      fetchPhotos()
+    }, 500)
+    return () => clearTimeout(timer)
   }, [fetchPhotos])
 
   // Load more photos when we have more to fetch (only when no limit)
