@@ -78,10 +78,9 @@ export function PhotoGrid() {
             alt={photo.name}
           />
         ))}
+        {/* Sentinel inside grid so it's below the fold after first batch */}
+        <div ref={sentinelRef} className="col-span-2 h-1" />
       </div>
-
-      {/* Sentinel for infinite scroll */}
-      <div ref={sentinelRef} className="h-8" />
 
       {isLoading && (
         <div className="flex justify-center py-6">

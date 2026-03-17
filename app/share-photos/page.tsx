@@ -79,7 +79,7 @@ export default function SharePhotosPage() {
   return (
     <div className="min-h-screen bg-secondary flex flex-col relative">
       {/* Floating Polaroid Gallery Background */}
-      <PolaroidGallery limit={20} />
+      <PolaroidGallery limit={5} />
 
       {/* Title - positioned at top */}
       <div className="px-4 pt-4 relative z-10">
